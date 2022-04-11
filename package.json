@@ -16,5 +16,14 @@
   "bugs": {
     "url": "https://github.com/egiiiiil/code_collaborate_shop_server/issues"
   },
-  "homepage": "https://github.com/egiiiiil/code_collaborate_shop_server#readme"
+  "homepage": "https://github.com/egiiiiil/code_collaborate_shop_server#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "mongodb": "^4.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "prettier": "^2.6.2"
+  }
 }
