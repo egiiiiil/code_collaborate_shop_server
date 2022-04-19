@@ -7,6 +7,6 @@ import {
 const productsRouter = express.Router();
 
 productsRouter.route('/').get(getProducts);
-productsRouter.route('/:Id').get(getProductsById);
+productsRouter.route('/:id').get(getProductsById);
 
 export default productsRouter;

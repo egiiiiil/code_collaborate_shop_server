@@ -25,8 +25,8 @@ const getProducts = async (req, res) => {
 
 const getProductsById = async (req, res) => {
   try {
-    const Id = req.params.Id;
-    const product = await productsCollection.findOne({ _id: new ObjectId(Id) });
+    const id = req.params.id;
+    const product = await productsCollection.findOne({ _id: new ObjectId(id) });
     console.log(product);
     res.json(product).status(200).end();
   } catch (err) {
