@@ -4,28 +4,19 @@ import { ObjectId } from 'mongodb';
 const productsCollection = collections.products;
 
 const getProducts = async (req, res) => {
-  res.json({ msg: 'Hello World' }).status(200).end();
+  let filter = {};
+  const query = req.query;
+  if (query.category) {
+    filter = { type: query.category };
+  }
+  try {
+    const products = await productsCollection.find(filter).toArray();
+    console.log(products);
+    res.json({ products: products }).status(200).end();
+  } catch (err) {
+    console.log(err.message);
+  }
 };
-// const getProducts = async (req, res) => {
-//   let filter = {};
-//   const query = req.query;
-//   console.log('query', query);
-
-//   if (query.category) {
-//     filter = { type: query.category };
-//   }
-
-//   if (query.search) {
-//     filter = { brand: { $regex: new RegExp(query.search, 'i') } };
-//   }
-//   try {
-//     const products = await productsCollection.find(filter).toArray();
-//     console.log(products);
-//     res.json(products).status(200).end();
-//   } catch (err) {
-//     console.log(err.message);
-//   }
-// };
 
 const getProductsById = async (req, res) => {
   try {

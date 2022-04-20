@@ -43,33 +43,69 @@ describe('productsController', function () {
 });
 
 describe('Get products', function () {
-  it('Status 200', function (done) {
+  // it('Status 200', function (done) {
+  //   request(
+  //     'http://localhost:8080/api/products/',
+  //     function (error, response, body) {
+  //       expect(response.statusCode).to.equal(200);
+  //       done();
+  //     }
+  //   );
+  // });
+
+  // it('Get object with message as response', function (done) {
+  //   request(
+  //     'http://localhost:8080/api/products/',
+  //     function (error, response, body) {
+  //       const { msg } = JSON.parse(body);
+  //       expect(msg).to.equal('Hello World');
+  //       done();
+  //     }
+  //   );
+  // });
+
+  it('Check total numbers of items', function (done) {
     request(
       'http://localhost:8080/api/products/',
       function (error, response, body) {
-        expect(response.statusCode).to.equal(200);
+        const { products } = JSON.parse(body);
+        expect(products.length).to.equal(44);
         done();
       }
     );
   });
 
-  it('Get object with message as response', function (done) {
+  it('Check type of product (truck)', function (done) {
     request(
-      'http://localhost:8080/api/products/',
+      'http://localhost:8080/api/products/?category=truck',
       function (error, response, body) {
-        const { msg } = JSON.parse(body);
-        expect(msg).to.equal('Hello World');
+        const { products } = JSON.parse(body);
+        const isTrucks = products.every((product) => product.type === 'truck');
+        expect(isTrucks).to.equal(true);
         done();
       }
     );
   });
-
-  it('If items in database, return 200', function (done) {
+  it('Check type of product (skateboard)', function (done) {
     request(
-      'http://localhost:8080/api/products/',
+      'http://localhost:8080/api/products/?category=skateboard',
       function (error, response, body) {
-        const {} = JSON.parse(body);
-        expect(response).to.equal();
+        const { products } = JSON.parse(body);
+        const isTrucks = products.every(
+          (product) => product.type === 'skateboard'
+        );
+        expect(isTrucks).to.equal(true);
+        done();
+      }
+    );
+  });
+  it('Check type of product (wheels)', function (done) {
+    request(
+      'http://localhost:8080/api/products/?category=wheels',
+      function (error, response, body) {
+        const { products } = JSON.parse(body);
+        const isTrucks = products.every((product) => product.type === 'wheels');
+        expect(isTrucks).to.equal(true);
         done();
       }
     );
