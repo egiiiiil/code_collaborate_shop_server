@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "test": "mocha"
+    "test": "mocha src/**/*.js --exit"
   },
   "repository": {
     "type": "git",
