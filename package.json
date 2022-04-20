@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha src/**/*.js --exit"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,10 @@
     "mongodb": "^4.5.0"
   },
   "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^9.2.2",
     "nodemon": "^2.0.15",
-    "prettier": "^2.6.2"
+    "prettier": "^2.6.2",
+    "request": "^2.88.2"
   }
 }
