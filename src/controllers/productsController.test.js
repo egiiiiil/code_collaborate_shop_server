@@ -43,27 +43,6 @@ describe('productsController', function () {
 });
 
 describe('Get products', function () {
-  // it('Status 200', function (done) {
-  //   request(
-  //     'http://localhost:8080/api/products/',
-  //     function (error, response, body) {
-  //       expect(response.statusCode).to.equal(200);
-  //       done();
-  //     }
-  //   );
-  // });
-
-  // it('Get object with message as response', function (done) {
-  //   request(
-  //     'http://localhost:8080/api/products/',
-  //     function (error, response, body) {
-  //       const { msg } = JSON.parse(body);
-  //       expect(msg).to.equal('Hello World');
-  //       done();
-  //     }
-  //   );
-  // });
-
   it('Check total numbers of items', function (done) {
     request(
       'http://localhost:8080/api/products/',
