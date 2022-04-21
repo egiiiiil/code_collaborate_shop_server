@@ -1,9 +1,4 @@
-###
-GET http://localhost:8080/api/products/?category=deck
-
-###
-GET http://localhost:8080/api/products/
-
+### Admin
 ### Add user admin
 POST http://localhost:8080/api/admin/
 Content-Type: application/json
@@ -31,3 +26,53 @@ Content-Type: application/json
   "email":"admin@cncshop.com",
   "password":"admin123"
 }
+
+### Fetch products
+### Fetch category
+GET http://localhost:8080/api/products/?category=truck
+
+### Get all products
+GET http://localhost:8080/api/products/
+
+### Get item w/ id
+GET http://localhost:8080/api/products/62553684729c44d7ab0bd7a8
+
+### Fetch cart
+GET http://localhost:8080/api/cart/
+
+### Get orders
+GET http://localhost:8080/api/orders/
+
+### Create new cart w/ product
+POST http://localhost:8080/api/cart/
+Content-Type: application/json
+
+{
+	"products": [
+		{
+			"productId": "6255363c729c44d7ab0bd7a6"
+		}
+	]
+}
+
+
+### Add item to existing cart
+POST http://localhost:8080/api/cart/626145820a70dac319304c31
+Content-Type: application/json
+
+{
+	"products": [
+		{
+			"productId": "6255363c729c44d7ab0bd7a6"
+		}
+	]
+}
+
+### Remove item from existing cart
+DELETE http://localhost:8080/api/cart/62614357777365ac15eb79c6/6255363c729c44d7ab0bd7a6
+
+### Remove whole cart object
+DELETE http://localhost:8080/api/cart/626145820a70dac319304c31
+
+### Delete everything
+DELETE http://localhost:8080/api/cart/
