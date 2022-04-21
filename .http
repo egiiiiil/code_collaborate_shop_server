@@ -3,3 +3,12 @@ GET http://localhost:8080/api/products/?category=deck
 
 ###
 GET http://localhost:8080/api/products/
+
+### Add user admin
+POST http://localhost:8080/api/admin/
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123"
+}

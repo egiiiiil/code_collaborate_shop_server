@@ -9,6 +9,7 @@ client.connect();
 const database = client.db('cnc-shop-db');
 const collections = {
   products: database.collection('products'),
+  admin: database.collection('admin'),
 };
 client.close();
 
