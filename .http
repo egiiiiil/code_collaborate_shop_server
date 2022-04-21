@@ -1,8 +1,26 @@
-###
+### Fetch category
 GET http://localhost:8080/api/products/?category=truck
 
-###
+### Fetch all proucts
 GET http://localhost:8080/api/products/
 
-###
+### Get item w/ id
 GET http://localhost:8080/api/products/62553684729c44d7ab0bd7a8
+
+### Fetch cart
+GET http://localhost:8080/api/cart/
+
+### Create new cart w/ product
+POST http://localhost:8080/api/cart/
+Content-Type: application/json
+
+{ 
+	"products": [
+		{
+			"_id": "623459afaf6564d90225f904",
+			"qty": 1
+		}
+	]
+}
+
+### Add item to existing cart
