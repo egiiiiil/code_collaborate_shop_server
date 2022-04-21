@@ -1,7 +1,37 @@
+### Admin
+### Add user admin
+POST http://localhost:8080/api/admin/
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "email": "admin@cncshop.com",
+  "password": "admin123"
+}
+
+### Get admin
+GET http://localhost:8080/api/admin/login
+Content-Type: application/json
+
+{
+  "email":"admin@cncshop.com",
+  "secret":"cncshopsecret"
+}
+
+### Login admin
+POST http://localhost:8080/api/admin/login
+Content-Type: application/json
+
+{
+  "email":"admin@cncshop.com",
+  "password":"admin123"
+}
+
+### Fetch products
 ### Fetch category
 GET http://localhost:8080/api/products/?category=truck
 
-### Fetch all proucts
+### Get all products
 GET http://localhost:8080/api/products/
 
 ### Get item w/ id
