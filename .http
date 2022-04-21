@@ -1,5 +1,8 @@
 ###
-GET http://localhost:8080/api/products/?category=deck
+GET http://localhost:8080/api/products/?category=truck
 
 ###
 GET http://localhost:8080/api/products/
+
+###
+GET http://localhost:8080/api/products/62553684729c44d7ab0bd7a8
