@@ -4,6 +4,5 @@
 	"semi": true,
 	"singleQuote": true,
 	"jsxSingleQuote": true,
-	"prettier.useTabs": true,
 	"useTabs": true
 }
