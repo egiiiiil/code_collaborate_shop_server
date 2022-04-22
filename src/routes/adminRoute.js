@@ -1,8 +1,8 @@
 import express from 'express';
 import {
-  addUser,
-  getAdmin,
-  loginAdmin,
+	addUser,
+	getAdmin,
+	loginAdmin,
 } from '../controllers/adminController.js';
 
 const adminRouter = express.Router();
