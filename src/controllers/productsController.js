@@ -7,7 +7,8 @@ const getProducts = async (req, res) => {
   let filter = {};
   const query = req.query;
   if (query.category) {
-    filter = { type: query.category };
+    filter = { type: { $regex: `${query.category}`, $options: 'i' } };
+
   }
   try {
     const products = await productsCollection.find(filter).toArray();
