@@ -48,7 +48,7 @@ const addUser = async (req, res) => {
 };
 
 const getAdmin = async (req, res) => {
-	const user = await collection.findOne({
+	const user = await adminCollection.findOne({
 		_id: req.user._id,
 	});
 	res.status(200).json({
