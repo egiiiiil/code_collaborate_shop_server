@@ -9,8 +9,13 @@ import cors from 'cors';
 const PORT = 8080;
 
 const app = express();
-
 app.use(express.json());
+app.use(
+	cors({
+		origin: 'http://localhost:3000',
+	})
+);
+
 app.use(express.static('public/images'));
 
 app.use('/api/products', productsRouter);
@@ -19,5 +24,5 @@ app.use('/api/cart', cartRouter);
 app.use('/api/orders', ordersRouter);
 
 app.listen(PORT, () => {
-  console.log(`Server at http://localhost:${PORT}`);
+	console.log(`Server at http://localhost:${PORT}`);
 });
