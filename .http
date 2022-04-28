@@ -29,7 +29,7 @@ Content-Type: application/json
 
 ### Fetch products
 ### Fetch category
-GET http://localhost:8080/api/products/?category=truck
+GET http://localhost:8080/api/products/?category=Skateboard
 
 ### Get all products
 GET http://localhost:8080/api/products/
