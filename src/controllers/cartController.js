@@ -2,6 +2,7 @@ import collections from '../database/MongoDB.js';
 import mongodb from 'mongodb';
 
 const cartCollection = collections.cart;
+const productsCollection = collections.products;
 
 const getCart = async (req, res) => {
 	const cart = await cartCollection.find({}).toArray();
@@ -9,11 +10,20 @@ const getCart = async (req, res) => {
 };
 
 const getSpecificCart = async (req, res) => {
-	const id = req.params.id;
-	const cart = await cartCollection.findOne({
-		_id: new mongodb.ObjectId(id),
-	});
-	res.json(cart);
+	try {
+		const id = req.params.id;
+		const cart = await cartCollection.findOne({
+			_id: new mongodb.ObjectId(id),
+		});
+		const ids = [];
+		cart.products.forEach((item) => ids.push(item._id));
+		const products = await productsCollection
+			.find({ _id: { $in: ids } })
+			.toArray();
+		res.json({ products, cart });
+	} catch (err) {
+		console.log(err);
+	}
 };
 
 const createCart = async (req, res) => {

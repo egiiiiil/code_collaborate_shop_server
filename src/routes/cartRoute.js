@@ -1,19 +1,19 @@
 import express from 'express';
 import {
-  getCart,
-  createCart,
-  addToCart,
-  removeFromCart,
-  removeCart,
-  getSpecificCart,
-  deleteAllCarts,
+	getCart,
+	createCart,
+	addToCart,
+	removeFromCart,
+	removeCart,
+	getSpecificCart,
+	deleteAllCarts,
 } from '../controllers/cartController.js';
 
 const cartRouter = express.Router();
 
 //GET
 cartRouter.route('/').get(getCart);
-cartRouter.route('/:id').get(getCart);
+cartRouter.route('/:id').get(getSpecificCart);
 
 //POST
 cartRouter.route('/').post(createCart);
