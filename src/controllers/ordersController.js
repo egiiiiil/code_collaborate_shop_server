@@ -10,12 +10,13 @@ const getOrders = async (req, res) => {
 
 const postOrders = async (req, res) => {
 	try {
-		const { name, email, adress, city } = req.body;
+		const { name, email, adress, city, cartId } = req.body;
 		const order = await ordersCollection.insertOne({
 			name: name,
 			email: email,
 			adress: adress,
 			city: city,
+			cartId: cartId,
 		});
 		res.json(order).status(200).end();
 	} catch (err) {
