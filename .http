@@ -43,6 +43,17 @@ GET http://localhost:8080/api/cart/
 ### Get orders
 GET http://localhost:8080/api/orders/
 
+### Post orders 
+POST http://localhost:8080/api/orders/
+Content-Type: application/json
+
+{
+	"name": "Nora",
+	"email": "nora@cncshop.com",
+	"adress": "HI town",
+	"city": "Hyper island"
+}
+
 ### Create new cart w/ product
 POST http://localhost:8080/api/cart/
 Content-Type: application/json
@@ -83,3 +94,4 @@ DELETE http://localhost:8080/api/cart/626145820a70dac319304c31
 
 ### Delete everything
 DELETE http://localhost:8080/api/cart/
+

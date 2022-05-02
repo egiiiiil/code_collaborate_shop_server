@@ -4,6 +4,7 @@ import {
 	createCart,
 	addToCart,
 	removeFromCart,
+	removeCart,
 	getSpecificCart,
 	deleteAllCarts,
 } from '../controllers/cartController.js';
