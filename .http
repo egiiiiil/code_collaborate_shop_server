@@ -43,6 +43,13 @@ GET http://localhost:8080/api/cart/
 ### Get orders
 GET http://localhost:8080/api/orders/
 
+###
+GET http://localhost:8080/api/orders/test
+Content-Type: application/json
+
+{
+	"token": "cncshopsecret"
+}
 ### Post orders 
 POST http://localhost:8080/api/orders/
 Content-Type: application/json
