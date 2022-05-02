@@ -4,7 +4,6 @@ import {
 	createCart,
 	addToCart,
 	removeFromCart,
-	removeCart,
 	getSpecificCart,
 	deleteAllCarts,
 } from '../controllers/cartController.js';
@@ -12,16 +11,20 @@ import {
 const cartRouter = express.Router();
 
 //GET
-cartRouter.route('/').get(getCart);
-cartRouter.route('/:id').get(getSpecificCart);
+cartRouter.route('/').get(getCart).post(createCart).delete(deleteAllCarts);
+cartRouter
+	.route('/:id')
+	.get(getSpecificCart)
+	.post(addToCart)
+	.delete(removeFromCart);
 
 //POST
-cartRouter.route('/').post(createCart);
-cartRouter.route('/:id').post(addToCart);
+// cartRouter.route('/').post(createCart);
+// cartRouter.route('/:id').post(addToCart);
 
 //DELETE
-cartRouter.route('/').delete(deleteAllCarts);
-cartRouter.route('/:id').delete(removeCart);
+// cartRouter.route('/').delete(deleteAllCarts);
+// cartRouter.route('/:id').delete(removeFromCart);
 cartRouter.route('/:id/:productId').delete(removeFromCart);
 
 export default cartRouter;

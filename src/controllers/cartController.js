@@ -71,9 +71,32 @@ const addToCart = async (req, res) => {
 	}
 	res.json({}).status(200).end();
 };
+const removeFromCart = async (req, res) => {
+	//res.send('Hello').status(200).end();
+	const id = req.params.id;
+	const selectedProduct = req.body;
+	console.log(selectedProduct);
+	const isInCart = await cartCollection.findOne({
+		_id: new mongodb.ObjectId(id),
+		'products._id': new mongodb.ObjectId(selectedProduct.productId),
+	});
+	console.log(isInCart);
+	if (isInCart) {
+		await cartCollection.updateOne(
+			{
+				_id: new mongodb.ObjectId(id),
+				'products._id': new mongodb.ObjectId(selectedProduct.id),
+			},
+			{ $inc: { 'products.$.qty': -1 } }
+		);
+	} else {
+		res.sendStatus(204);
+	}
+	res.json({}).status(200).end();
+};
 
 //Remove a single product from cart
-const removeFromCart = async (req, res) => {
+/* const removeFromCart = async (req, res) => {
 	const id = req.params.id;
 	const selectedProduct = req.params.productId;
 	await cartCollection.updateOne(
@@ -81,22 +104,22 @@ const removeFromCart = async (req, res) => {
 		{ $pull: { products: { productId: selectedProduct } } }
 	);
 	res.json({});
-};
+}; */
 
 //Remove cart object by cart id
-const removeCart = async (req, res) => {
-	const id = req.params.id;
-	const selectedCartId = await cartCollection.count({
-		_id: new mongodb.ObjectId(id),
-	});
-	const idExist = selectedCartId === 1;
-	if (idExist) {
-		await cartCollection.deleteOne({ _id: new mongodb.ObjectId(id) });
-		res.sendStatus(200);
-	} else {
-		res.sendStatus(404);
-	}
-};
+// const removeCart = async (req, res) => {
+// 	const id = req.params.id;
+// 	const selectedCartId = await cartCollection.count({
+// 		_id: new mongodb.ObjectId(id),
+// 	});
+// 	const idExist = selectedCartId === 1;
+// 	if (idExist) {
+// 		await cartCollection.deleteOne({ _id: new mongodb.ObjectId(id) });
+// 		res.sendStatus(200);
+// 	} else {
+// 		res.sendStatus(404);
+// 	}
+// };
 
 //Delete all carts
 const deleteAllCarts = async (req, res) => {
@@ -113,7 +136,6 @@ export {
 	createCart,
 	addToCart,
 	removeFromCart,
-	removeCart,
 	getSpecificCart,
 	deleteAllCarts,
 };
