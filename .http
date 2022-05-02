@@ -78,6 +78,13 @@ Content-Type: application/json
 		}
 	]
 }
+### Remove item to existing cart
+DELETE http://localhost:8080/api/cart/626be7154added91b7a32713
+Content-Type: application/json
+
+{
+	"productId": "62553684729c44d7ab0bd7a8"
+}
 
 ### Remove item from existing cart
 DELETE http://localhost:8080/api/cart/62614357777365ac15eb79c6/6255363c729c44d7ab0bd7a6
