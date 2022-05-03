@@ -2,10 +2,25 @@ import collections from '../database/MongoDB.js';
 import mongodb from 'mongodb';
 
 const ordersCollection = collections.orders;
+const secretToken = 'cncshopsecret';
 
 const getOrders = async (req, res) => {
 	const orders = await ordersCollection.find({}).toArray();
 	res.json(orders);
+};
+
+const getOrdersProtected = async (req, res) => {
+	const { token } = req.body;
+	if (token === secretToken) {
+		const orders = await ordersCollection.find({}).toArray();
+		res.json(orders).status(200).end();
+	} else {
+		res.status(400).end();
+	}
+	try {
+	} catch (err) {
+		console.log(err);
+	}
 };
 
 const postOrders = async (req, res) => {
@@ -24,4 +39,4 @@ const postOrders = async (req, res) => {
 	}
 };
 
-export { getOrders, postOrders };
+export { getOrders, getOrdersProtected, postOrders };
