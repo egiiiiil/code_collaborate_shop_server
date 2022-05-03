@@ -25,11 +25,11 @@ const getOrdersProtected = async (req, res) => {
 
 const postOrders = async (req, res) => {
 	try {
-		const { name, email, adress, city, cartId } = req.body;
+		const { name, email, address, city, cartId } = req.body;
 		const order = await ordersCollection.insertOne({
 			name: name,
 			email: email,
-			adress: adress,
+			address: address,
 			city: city,
 			cartId: cartId,
 		});
