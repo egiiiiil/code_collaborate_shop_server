@@ -75,18 +75,18 @@ Content-Type: application/json
 
 
 ### Add item to existing cart
-POST http://localhost:8080/api/cart/626fea7e63e3b28b96d9b69c
+POST http://localhost:8080/api/cart/62711936caa77201262255bb
 Content-Type: application/json
 
 {
 	"id": "62553684729c44d7ab0bd7a8"
 }
 ### Remove item to existing cart
-DELETE http://localhost:8080/api/cart/626fec637c9da87ea1f74e9c
+DELETE http://localhost:8080/api/cart/62711936caa77201262255bb
 Content-Type: application/json
 
 {
-	"productId": "62553684729c44d7ab0bd7a8"
+	"id": "62553684729c44d7ab0bd7a8"
 }
 
 ### Remove all qty of product from cart
