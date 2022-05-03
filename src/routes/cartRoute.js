@@ -4,6 +4,7 @@ import {
 	createCart,
 	addToCart,
 	removeFromCart,
+	//removeItemFromCart,
 	getSpecificCart,
 	deleteAllCarts,
 } from '../controllers/cartController.js';
@@ -25,6 +26,5 @@ cartRouter
 //DELETE
 // cartRouter.route('/').delete(deleteAllCarts);
 // cartRouter.route('/:id').delete(removeFromCart);
-cartRouter.route('/:id/:productId').delete(removeFromCart);
-
+//cartRouter.route('/:id/:productId').delete(removeItemFromCart);
 export default cartRouter;
