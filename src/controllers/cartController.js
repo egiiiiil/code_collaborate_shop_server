@@ -47,7 +47,7 @@ const addToCart = async (req, res) => {
 		_id: new mongodb.ObjectId(id),
 		'products._id': new mongodb.ObjectId(selectedProduct.id),
 	});
-
+	console.log('cccccccc', isInCart);
 	if (isInCart) {
 		await cartCollection.updateOne(
 			{
@@ -56,7 +56,8 @@ const addToCart = async (req, res) => {
 			},
 			{ $inc: { 'products.$.qty': 1 } }
 		);
-	} else {
+		console.log('aaaaaaaaaaaa');
+	} else if (!isInCart) {
 		await cartCollection.updateOne(
 			{ _id: new mongodb.ObjectId(id) },
 			{
@@ -68,6 +69,7 @@ const addToCart = async (req, res) => {
 				},
 			}
 		);
+		console.log('bbbbbbbbbb');
 	}
 	res.json({}).status(200).end();
 };
@@ -79,19 +81,21 @@ const removeFromCart = async (req, res) => {
 	console.log(selectedProduct);
 	const isInCart = await cartCollection.findOne({
 		_id: new mongodb.ObjectId(id),
-		'products._id': new mongodb.ObjectId(selectedProduct.productId),
+		'products._id': new mongodb.ObjectId(selectedProduct.id),
 	});
-	console.log(isInCart);
+	console.log('cccccccc', isInCart);
 	if (isInCart) {
 		await cartCollection.updateOne(
 			{
 				_id: new mongodb.ObjectId(id),
-				'products._id': new mongodb.ObjectId(selectedProduct.productId),
+				'products._id': new mongodb.ObjectId(selectedProduct.id),
 			},
 			{ $inc: { 'products.$.qty': -1 } }
 		);
+		console.log('aaaaaaaaaaaa');
 	} else {
-		res.sendStatus(204);
+		console.log('bbbbbbbbbb');
+		res.sendStatus(404);
 	}
 	res.json({}).status(200).end();
 };
