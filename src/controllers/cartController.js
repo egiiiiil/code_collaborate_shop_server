@@ -71,6 +71,7 @@ const addToCart = async (req, res) => {
 	}
 	res.json({}).status(200).end();
 };
+
 const removeFromCart = async (req, res) => {
 	//res.send('Hello').status(200).end();
 	const id = req.params.id;
@@ -85,7 +86,7 @@ const removeFromCart = async (req, res) => {
 		await cartCollection.updateOne(
 			{
 				_id: new mongodb.ObjectId(id),
-				'products._id': new mongodb.ObjectId(selectedProduct.id),
+				'products._id': new mongodb.ObjectId(selectedProduct.productId),
 			},
 			{ $inc: { 'products.$.qty': -1 } }
 		);
@@ -95,16 +96,33 @@ const removeFromCart = async (req, res) => {
 	res.json({}).status(200).end();
 };
 
-//Remove a single product from cart
-/* const removeFromCart = async (req, res) => {
-	const id = req.params.id;
-	const selectedProduct = req.params.productId;
-	await cartCollection.updateOne(
-		{ _id: new mongodb.ObjectId(id) },
-		{ $pull: { products: { productId: selectedProduct } } }
-	);
-	res.json({});
-}; */
+//Remove all qty of product from cart
+// const removeItemFromCart = async (req, res) => {
+// 	//res.send('Hello').status(200).end();
+// 	const id = req.params.id;
+// 	const selectedProduct = req.params.productId;
+// 	console.log('sp', selectedProduct);
+// 	console.log('id', id);
+// 	const isInCart = await cartCollection.findOne({
+// 		_id: new mongodb.ObjectId(id),
+// 		'products._id': new mongodb.ObjectId(selectedProduct),
+// 	});
+// 	console.log('inc', isInCart);
+// 	// if (isInCart) {
+// 	// 	await cartCollection.updateOne(
+// 	// 		{
+// 	// 			_id: new mongodb.ObjectId(id),
+// 	// 			'products._id': new mongodb.ObjectId(selectedProduct),
+// 	// 		},
+// 	// 		{
+// 	// 			$pull: { 'products.$._id': { isInCart.products } },
+// 	// 		}
+// 	// 	);
+// 	// } else {
+// 	// 	res.sendStatus(204);
+// 	// }
+// 	res.json({}).status(200).end();
+// };
 
 //Remove cart object by cart id
 // const removeCart = async (req, res) => {
@@ -136,6 +154,7 @@ export {
 	createCart,
 	addToCart,
 	removeFromCart,
+	//removeItemFromCart,
 	getSpecificCart,
 	deleteAllCarts,
 };
