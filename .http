@@ -44,7 +44,7 @@ GET http://localhost:8080/api/cart/
 GET http://localhost:8080/api/orders/
 
 ###
-GET http://localhost:8080/api/orders/test
+POST http://localhost:8080/api/orders/test
 Content-Type: application/json
 
 {

@@ -1,23 +1,22 @@
 import collections from '../database/MongoDB.js';
-import mongodb from 'mongodb';
 
 const ordersCollection = collections.orders;
 const secretToken = 'cncshopsecret';
 
-const getOrders = async (req, res) => {
-	const orders = await ordersCollection.find({}).toArray();
-	res.json(orders);
-};
+// const getOrders = async (req, res) => {
+// 	const orders = await ordersCollection.find({}).toArray();
+// 	res.json(orders);
+// };
 
 const getOrdersProtected = async (req, res) => {
 	const { token } = req.body;
-	if (token === secretToken) {
-		const orders = await ordersCollection.find({}).toArray();
-		res.json(orders).status(200).end();
-	} else {
-		res.status(400).end();
-	}
 	try {
+		if (JSON.parse(token) === secretToken) {
+			const orders = await ordersCollection.find({}).toArray();
+			res.json(orders).status(200).end();
+		} else {
+			res.status(400).end();
+		}
 	} catch (err) {
 		console.log(err);
 	}
@@ -39,4 +38,4 @@ const postOrders = async (req, res) => {
 	}
 };
 
-export { getOrders, getOrdersProtected, postOrders };
+export { getOrdersProtected, postOrders };
