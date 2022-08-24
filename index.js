@@ -6,7 +6,7 @@ import cartRouter from './src/routes/cartRoute.js';
 import ordersRouter from './src/routes/ordersRoute.js';
 import cors from 'cors';
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 const app = express();
 app.use(express.json());
